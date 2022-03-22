@@ -2,19 +2,39 @@
   border-style: none;
   border-radius: 5px;
   padding: 0.5rem 1rem;
-  background-color: #6e41e2;
-  color: white;
 
-  &:hover {
-    background-color: #5835b0;
-  }
-  &:focus {
+  &.primary {
     background-color: #6e41e2;
-    border-color: #412a7e;
+    color: white;
+
+    &:hover {
+      background-color: #5835b0;
+    }
+    &:focus {
+      background-color: #6e41e2;
+      border-color: #412a7e;
+    }
+
+    &:active {
+      background-color: #472c8a;
+    }
   }
 
-  &:active {
-    background-color: #472c8a;
+  &.secondary {
+    background-color: #ffffff;
+    color: #6e41e2;
+
+    &:hover {
+      background-color: #eee8fc;
+    }
+    &:focus {
+      background-color: #ffffff;
+      border-color: #8d8d8d;
+    }
+
+    &:active {
+      background-color: #70648f;
+    }
   }
 
   &.padding_sm {

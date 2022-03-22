@@ -1,10 +1,8 @@
-import React, { HTMLAttributes, ReactNode, SyntheticEvent } from "react";
-import cn from "classnames";
+import React, { HTMLAttributes, ReactNode } from "react";
 import styles from "./Button.module.scss";
 
 export interface Props extends HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  color: "primary" | "secondary";
   label: string;
 
   /** Provide a text for the button */
@@ -17,21 +15,25 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
 
 export const Button: React.FC<Props> = ({
   children,
+  variant = "primary",
   text,
   size = "md",
   label,
 }) => {
-  // const classNames = cn({
-  //   [styles[`button_padding_${size}`]]: size,
-  // });
   let padding = "";
   if (size === "sm") padding = styles.padding_sm;
   if (size === "md") padding = styles.padding_md;
   if (size === "lg") padding = styles.padding_lg;
 
+  let defaultStyles = "";
+  if (variant === "primary") defaultStyles = styles.primary;
+  if (variant === "secondary") defaultStyles = styles.secondary;
+
   return (
-    <button className={`${styles.button} ${padding}`} aria-label={label}>
-      {children}
+    <button
+      className={`${styles.button} ${defaultStyles} ${padding}`}
+      aria-label={label}
+    >
       {text}
     </button>
   );
