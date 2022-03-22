@@ -1,0 +1,30 @@
+.button {
+  border-style: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  background-color: #6e41e2;
+  color: white;
+
+  &:hover {
+    background-color: #5835b0;
+  }
+  &:focus {
+    background-color: #6e41e2;
+    border-color: #412a7e;
+  }
+
+  &:active {
+    background-color: #472c8a;
+  }
+
+  &.padding_sm {
+    padding: 0.25rem 0.75rem;
+  }
+
+  &.padding_md {
+    padding: 0.5rem 1rem;
+  }
+  &.padding_lg {
+    padding: 0.75rem 1.25rem;
+  }
+}
