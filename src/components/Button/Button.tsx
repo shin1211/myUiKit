@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, { HTMLAttributes, ReactNode, useState } from "react";
 import styles from "./Button.module.scss";
 
 export interface Props extends HTMLAttributes<HTMLButtonElement> {
@@ -20,6 +20,8 @@ export const Button: React.FC<Props> = ({
   size = "md",
   label,
 }) => {
+  const [loaded, setLoaded] = useState<boolean>(true);
+
   let padding = "";
   if (size === "sm") padding = styles.padding_sm;
   if (size === "md") padding = styles.padding_md;
@@ -29,12 +31,26 @@ export const Button: React.FC<Props> = ({
   if (variant === "primary") defaultStyles = styles.primary;
   if (variant === "secondary") defaultStyles = styles.secondary;
 
+  let loaddingAnimation = !loaded ? styles["button-loading"] : "";
+
   return (
     <button
-      className={`${styles.button} ${defaultStyles} ${padding}`}
+      className={`
+      ${styles.button} 
+      ${defaultStyles} 
+      ${padding} 
+      ${loaddingAnimation}`}
       aria-label={label}
+      onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        setLoaded(false);
+        // wait till fully loaded
+        setTimeout(() => {
+          setLoaded(true);
+        }, 2000);
+      }}
     >
-      {text}
+      <span className={styles.text}>{text}</span>
     </button>
   );
 };
